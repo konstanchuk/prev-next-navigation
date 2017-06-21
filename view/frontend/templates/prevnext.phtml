@@ -1,0 +1,93 @@
+<?php
+
+/**
+ * Previous Next Navigation Extension for Magento 2
+ *
+ * @author     Volodymyr Konstanchuk http://konstanchuk.com
+ * @copyright  Copyright (c) 2017 The authors
+ * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
+ */
+
+/** @var \Konstanchuk\PrevNextNavigation\Block\PrevNext $block */
+
+$defaultCategoryId = $block->getDefaultCategoryId();
+if ($defaultCategoryId):
+    /** @var \Konstanchuk\PrevNextNavigation\Helper\Data $helper */
+    $helper = $block->getHelper();
+    $product = $block->getProduct();
+    ?>
+    <div id="prevNextNavigation" data-bind="scope:'prevNextNavigation'" class="pn-navigation">
+        <div class="pn-wrap">
+            <div class="pn-btns" data-bind="visible: visible">
+                <?php if ($helper->showBackOnCategoryBtn()): ?>
+                    <!-- ko if: categoryUrl -->
+                    <div class="pn-category-link">
+                        <a href="#" class="action primary" data-bind="attr: { href: categoryUrl }">
+                            <?php echo __('back on category'); ?>
+                        </a>
+                    </div>
+                    <!-- /ko -->
+                <?php endif; ?>
+                <div class="pn-links">
+                    <!-- ko if: prevProduct -->
+                    <div class="pn-prev" data-bind="with: prevProduct">
+                        <a href="#" data-bind="attr: { href: url }" class="action primary">
+                            <?php if ($helper->showProductNameInLink()): ?>
+                                <span data-bind="html: name"></span>
+                            <?php else: ?>
+                                <span><?php echo __('previous product'); ?></span>
+                            <?php endif; ?>
+                            <?php if ($helper->showImageInLink()): ?>
+                                <div class="img">
+                                    <img src="#" data-bind="attr: { src: img }"
+                                         alt="<?php echo __('previous product'); ?>"/>
+                                </div>
+                            <?php endif; ?>
+                        </a>
+                    </div>
+                    <!-- /ko -->
+                    <!-- ko if: nextProduct -->
+                    <div class="pn-next" data-bind="with: nextProduct">
+                        <a href="#" data-bind="attr: { href: url }" class="action primary">
+                            <?php if ($helper->showProductNameInLink()): ?>
+                                <span data-bind="html: name"></span>
+                            <?php else: ?>
+                                <span><?php echo __('next product'); ?></span>
+                            <?php endif; ?>
+                            <?php if ($helper->showImageInLink()): ?>
+                                <div class="img">
+                                    <img src="#" data-bind="attr: { src: img }"
+                                         alt="<?php echo __('next product'); ?>"/>
+                                </div>
+                            <?php endif; ?>
+                        </a>
+                    </div>
+                    <!-- /ko -->
+                </div>
+            </div>
+            <div data-bind="visible: !visible">
+                <div class="np-loader"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <script type="text/x-magento-init">
+    {
+        "#prevNextNavigation": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "prevNextNavigation": {
+                        "component": "konstanchuk/prevNextNavigationInit",
+                        "current_product_id": <?php echo json_encode($product->getId()); ?>,
+                        "category_ids": <?php echo json_encode($product->getCategoryIds()); ?>,
+                        "get_url": <?php echo json_encode($block->getUrl('prev_next_navigation/get')); ?>,
+                        "default_values": <?php echo json_encode($block->getDefaultValues()); ?>,
+                        "default_category_id": <?php echo json_encode($defaultCategoryId); ?>
+                    }
+                }
+            }
+        }
+    }
+
+    </script>
+<?php endif; ?>

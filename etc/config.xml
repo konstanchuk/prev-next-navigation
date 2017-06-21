@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Previous Next Navigation Extension for Magento 2
+ *
+ * @author     Volodymyr Konstanchuk http://konstanchuk.com
+ * @copyright  Copyright (c) 2017 The authors
+ * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <catalog>
+            <konstanchuk_pn_navigation>
+                <active>1</active>
+                <name_in_link>1</name_in_link>
+                <show_image>1</show_image>
+                <back_on_category>1</back_on_category>
+            </konstanchuk_pn_navigation>
+        </catalog>
+    </default>
+</config>

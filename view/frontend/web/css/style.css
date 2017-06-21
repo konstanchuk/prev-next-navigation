@@ -1,0 +1,95 @@
+/**
+ * Previous Next Navigation Extension for Magento 2
+ *
+ * @author     Volodymyr Konstanchuk http://konstanchuk.com
+ * @copyright  Copyright (c) 2017 The authors
+ * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
+ */
+.pn-wrap {
+    width: 100%;
+    margin-bottom: 12px;
+    height: 30px;
+}
+
+.pn-category-link {
+    float: left;
+}
+
+.pn-wrap a.action {
+    padding: 3px;
+    position: relative;
+    display: block;
+}
+
+.pn-links {
+    text-align: right;
+    float: right;
+}
+
+.pn-links > div {
+    display: inline-block;
+}
+
+.pn-prev a.action {
+    padding-left: 25px;
+}
+
+.pn-prev a.action:before {
+    content: '';
+    position: absolute;
+    background-image: url(../images/left-icon.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 20px;
+    height: 20px;
+    left: 0;
+    top: 2px;
+}
+
+.pn-next a.action {
+    padding-right: 25px;
+}
+
+.pn-next a.action:after {
+    content: '';
+    position: absolute;
+    background-image: url(../images/right-icon.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 20px;
+    height: 20px;
+    right: 0;
+    top: 2px;
+}
+
+.pn-wrap .clear {
+    clear: both
+}
+
+.pn-wrap a.action .img {
+    display: none;
+    position: absolute;
+    top: -102px;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    background: white;
+    z-index: 100;
+    border: 1px solid #655757;
+}
+
+.pn-wrap a.action:hover .img {
+    display: block;
+    overflow: hidden;
+}
+
+.np-loader {
+    float: right;
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/loader-icon.gif);
+}
+
+.pn-btns {
+    display: none;
+}
